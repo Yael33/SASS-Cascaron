@@ -1,0 +1,23 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  padding: v.$separacion 0;
+  //  Arriba y abajo padding e izquierda y derecha cero para que se vea el contenido del menu en dispositivo pequeño
+  align-items: center;
+  @include m.desktop {
+    flex-direction: row;
+    justify-content: space-between;
+    //  align-items: center; aquí lo quitamos porque lo vamos a heredar en responsive para que se vea bien chico y grande
+  }
+  &__logo {
+    width: 30rem;
+    margin-bottom: 5rem;
+    @include m.desktop {
+      margin-bottom: 0;
+    }
+  }
+}
