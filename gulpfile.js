@@ -6,13 +6,13 @@ const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 
-const sourcemaps = require('gulp-sourcemaps');
+// const sourcemaps = require('gulp-sourcemaps');
 // El sourcemap lo podemos dejar o quitar junto con el init y el write de function css
 // sirve para ver en que linea modificamos un estilo del scss y si lo quitamos nos sale pero del app.css no del app.css.map que es cómo un mapa 
 // nos dirá la linea en que hicimos ejemplo un padding o background etc...
 
-// CSS nano está muy bueno 
-const cssnano = require('cssnano');
+// CSS nano está muy bueno minifica el codigo
+// const cssnano = require('cssnano');
 
 
 // imagenes
@@ -27,11 +27,12 @@ function css(done) {
     // Identificar archivo que hoja vamos a compilar
     // 2 compilar 3 guardar el css 
     src('src/scss/app.scss')
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(sass({ outputStyle: 'expanded' }))
         .pipe(plumber())
-        .pipe(postcss([autoprefixer(), cssnano()]))
-        .pipe(sourcemaps.write('.'))
+        // .pipe(postcss([autoprefixer(), cssnano()]))
+        .pipe(postcss([autoprefixer()]))
+        // .pipe(sourcemaps.write('.'))
         // Para que se guarde en el build esto sirve para encontrar archivos cuando nos hagan cambios
         // .pipe(sass({ outputStyle: 'compressed'}))
         .pipe(dest('build/css'))
@@ -77,6 +78,8 @@ exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
 // Tareas por default 
-exports.default = series(imagenes, versionWebp, versionAvif, css, dev)
+exports.default = series(imagenes, versionWebp, versionAvif, css, dev);
 // Una vez que ejecuta la tarea css ejecuta la otra
 // Con paralel al mismo tiempo inician todas
+
+
