@@ -1,0 +1,26 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.descargar {
+  background-color: v.$grisClaro;
+  padding: v.$separacion 0;
+  &__grid {
+    @include m.tablet {
+      @include m.grid(2, v.$separacion);
+    }
+  }
+
+  &__imagen {
+    width: 50%;
+    margin: 5rem auto 0 auto;
+    transition-property: transform;
+    transition-duration: 300ms;
+    //   Este efecto se lo podemos aplicar al contenedor o a la imagen
+    &:hover {
+      transform: rotate(4deg) scale(1.2);
+    }
+    @include m.tablet { 
+        margin-top: 0;
+    }
+  }
+}
